@@ -2,15 +2,22 @@ import 'package:flutter/material.dart';
 
 class Input extends StatelessWidget {
   final String label;
+  final TextEditingController controller;
 
-  const Input({super.key, required this.label});
+  const Input({super.key, required this.label, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      style: const TextStyle(color: Colors.white),
+      controller: controller,
+      style: const TextStyle(color: Colors.black),
+      obscureText: label == "Senha",
+      keyboardType:
+          label == "Senha" ? TextInputType.text : TextInputType.emailAddress,
       decoration: InputDecoration(
-          filled: true, fillColor: Colors.blueAccent, hintText: label),
+          border: const OutlineInputBorder(),
+          hintText: label,
+          hintStyle: const TextStyle(color: Colors.grey)),
     );
   }
 }

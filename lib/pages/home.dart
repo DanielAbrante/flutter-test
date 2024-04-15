@@ -5,8 +5,23 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Text('Home'),
+    final Map<String, String> arguments =
+        ModalRoute.of(context)?.settings.arguments as Map<String, String>;
+
+    // Extrai os valores de email e password dos argumentos
+    final String? email = arguments['email'];
+    final String? password = arguments['password'];
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Bem-vindo, $email"),
+      ),
+      body: Column(
+        children: [
+          MaterialButton(onPressed: () => Navigator.pop(context)),
+          Text("Sua senha é -> $password <- kskskskks")
+        ],
+      ),
     );
   }
 }
